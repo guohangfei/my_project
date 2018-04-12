@@ -18,10 +18,8 @@ public class IndexController {
 
     private Logger log = LoggerFactory.getLogger("IndexController");
 
-    @SystemLog(type=LogTab.LOG_TYPE_QUERY,message = "进入主页")
     @RequestMapping(value = "/index",method = { RequestMethod.GET, RequestMethod.POST })
     public String index() {
-        log.info("日志记录");
         System.out.println("进入首页");
         return "index";
     }

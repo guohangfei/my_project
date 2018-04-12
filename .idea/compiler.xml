@@ -9,6 +9,7 @@
         <module name="my_base" />
         <module name="my_cms" />
         <module name="my_log" />
+        <module name="my_spider" />
         <module name="my_util" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
       <module name="my_log" target="1.7" />
       <module name="my_login" target="1.5" />
       <module name="my_project" target="1.5" />
+      <module name="my_spider" target="1.7" />
       <module name="my_util" target="1.7" />
     </bytecodeTargetLevel>
   </component>
