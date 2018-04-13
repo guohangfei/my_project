@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Root Context: defines shared resources visible to all other web components -->
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+
+    <!--&lt;!&ndash; 缓存管理器 使用Ehcache实现 &ndash;&gt;-->
+    <!--<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
+        <!--<property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 凭证匹配器 &ndash;&gt;-->
+    <!--<bean id="credentialsMatcher"-->
+          <!--class="com.xx.smarthome.shiro.RetryLimitHashedCredentialsMatcher">-->
+        <!--<constructor-arg ref="cacheManager" />-->
+        <!--<property name="hashAlgorithmName" value="md5" />&lt;!&ndash; md5盐值加密3次 &ndash;&gt;-->
+        <!--<property name="hashIterations" value="3" />-->
+        <!--<property name="storedCredentialsHexEncoded" value="true" />-->
+    <!--</bean>-->
+
+    <!-- 自定义的jdbcrealm -->
+    <bean id="jdbcRealmCustom" class="shiro.JdbcRealmCustom">
+        <!--&lt;!&ndash; 凭证匹配器 &ndash;&gt;-->
+        <!--<property name="credentialsMatcher" ref="credentialsMatcher" />-->
+        <!--<property name="cachingEnabled" value="true" />-->
+        <!--&lt;!&ndash; 如需要自定义缓存时间放开以下.修改 ehcache.xml &ndash;&gt;-->
+        <!--<property name="authenticationCachingEnabled" value="true" />-->
+        <!--<property name="authenticationCacheName" value="authenticationCache" />-->
+        <!--<property name="authorizationCachingEnabled" value="true" />-->
+        <!--<property name="authorizationCacheName" value="authorizationCache" />-->
+    </bean>
+
+    <!-- Shiro安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="jdbcRealmCustom"></property>
+        <!--<property name="cacheManager" ref="cacheManager"></property>-->
+    </bean>
+
+    <!-- 登出过滤器 -->
+    <bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+        <property name="redirectUrl" value="/login.jsp" />
+    </bean>
+
+    <!-- Shiro主过滤器本身功能十分强大，其强大之处就在于它支持任何基于URL路径表达式的、 自定义的过滤器的执行 Web应用中， Shiro可控制的Web请求必须经过Shiro主过滤器的拦截，
+        Shiro对基于Spring的Web应用提供了完美的支持 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- Shiro的核心安全接口，这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"></property>
+        <!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
+         <property name="loginUrl" value="/login.jsp"></property>
+        <!-- 登录成功后要跳转的连接(本例中此属性用不到，因为登录成功后的处理逻辑在LoginController里硬编码) -->
+        <!-- <property name="successUrl" value="/" ></property> -->
+        <!-- 用户访问未对其授权的资源时，所显示的连接 -->
+        <property name="unauthorizedUrl" value="/404.jsp"></property>
+        <!-- 访问权限配置，anon不需要权限可以访问，authc需要权限，如果没有登陆则跳回登陆界面 -->
+        <!-- 这些是对url进行匹配 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 静态资源允许访问 -->
+                /resources/** = anon
+                <!-- 登录注册允许访问 -->
+                /login* = anon
+                /register* = anon
+                <!-- 登出 -->
+                /logout = logout
+                <!-- 其他资源需要认证 -->
+                /** = authc
+                <!-- perms[user:query]表示访问此连接需要权限为user:query的用户 -->
+                <!-- /user=perms[user:query] -->
+                <!-- roles[manager]表示访问此连接需要用户的角色为manager -->
+                <!-- /user/add=roles[manager] -->
+            </value>
+        </property>
+    </bean>
+
+</beans>

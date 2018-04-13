@@ -32,7 +32,6 @@
 	</bean>
 
 
-
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -44,7 +43,7 @@
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.nasoft.credit.nea.mapper" />
+		<property name="basePackage" value="mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -55,18 +54,12 @@
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
 	<!-- 此处只负责扫描数DAO层以及SERVICE层 -->
-	<context:component-scan base-package="com.nasoft.credit.nea.mapper" use-default-filters="false">
+	<context:component-scan base-package="mapper" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
-	<context:component-scan base-package="com.nasoft.credit.nea.service" use-default-filters="false">
+	<context:component-scan base-package="service" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
-	</context:component-scan>
-	<context:component-scan base-package="com.nasoft.credit.nea.utils" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
-	</context:component-scan>
-	<context:component-scan base-package="com.nasoft.credit.nea.utils" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
 	</context:component-scan>
 </beans>

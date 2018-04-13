@@ -25,6 +25,19 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- 此处只负责扫描数DAO层以及SERVICE层 -->
+    <context:component-scan base-package="mapper" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
+    <context:component-scan base-package="service" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
+    <context:component-scan base-package="util" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+    </context:component-scan>
+
 
 	
 </beans>

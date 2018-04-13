@@ -17,8 +17,8 @@ public class LoginController {
     private Logger log = LoggerFactory.getLogger("LoginController");
 
     @RequestMapping(value = "/login",method = { RequestMethod.GET, RequestMethod.POST })
-    public String index() {
-        System.out.println("进入登录页面");
+    public String login() {
+        
         return "login";
     }
 
