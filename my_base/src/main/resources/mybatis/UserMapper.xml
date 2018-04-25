@@ -273,4 +273,13 @@
       PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR}
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
+
+    <!--自定义的方法-->
+    <!--根据用户注册账号后获得所用用户信息-->
+    <select id="queryUserByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from T_USER
+        where USER_NAME = #{userName,jdbcType=VARCHAR}
+    </select>
 </mapper>

@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import sun.rmi.runtime.Log;
 import util.PageData;
 
 import java.util.List;

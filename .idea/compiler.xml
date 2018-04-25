@@ -13,14 +13,5 @@
         <module name="my_util" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="my_base" target="1.7" />
-      <module name="my_cms" target="1.5" />
-      <module name="my_log" target="1.7" />
-      <module name="my_login" target="1.5" />
-      <module name="my_project" target="1.5" />
-      <module name="my_spider" target="1.7" />
-      <module name="my_util" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
 </project>

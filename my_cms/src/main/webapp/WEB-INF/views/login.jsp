@@ -33,16 +33,16 @@
 
     <div class="container">
 
-      <form class="login-form" action="/index">
+      <form class="login-form" method="post" action="/login">
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
               <span class="input-group-addon"><i class="icon_profile"></i></span>
-              <input type="text" class="form-control" placeholder="Username" autofocus>
+              <input  id="username" name="userName" type="text" class="form-control" placeholder="Username" autofocus>
             </div>
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input name="password" id="password" type="password" class="form-control" placeholder="Password">
             </div>
             <label class="checkbox">
                 <input type="checkbox" value="remember-me"> Remember me

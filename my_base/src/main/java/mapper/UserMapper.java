@@ -29,11 +29,12 @@ public interface UserMapper  extends BaseMapper<User, UserExample> {
 
     int updateByPrimaryKey(User record);
 
-
     /**
-     * 根据用户注册账号后获得所用用户信息
-     * @param  userName 用户注册姓名
-     * @return 用户实体User
-     */
-    User findUserByUserName(String userName);
+     * 根据用户姓名活动整改实体类
+     * @Author:          郭航飞
+     * @CreateDate:   2018/4/25 13:41
+     * @param            userName
+     * @return           用户实体类 User
+    **/
+    User queryUserByName(String userName);
 }

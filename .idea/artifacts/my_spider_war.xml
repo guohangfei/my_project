@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="my_spider:war">
-    <output-path>$PROJECT_DIR$/my_spider/target</output-path>
-    <root id="archive" name="my_spider-0.0.1-SANPSHOT.war">
-      <element id="artifact" artifact-name="my_spider:war exploded" />
-    </root>
-  </artifact>
-</component>

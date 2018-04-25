@@ -35,14 +35,14 @@
         <param-value>test1.webapp.root</param-value>
     </context-param>
 
-    <!-- spring 配置 -->
+    <!--Spring监听器配置 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-
+            classpath*:spring-*.xml
         </param-value>
     </context-param>
 

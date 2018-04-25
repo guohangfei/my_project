@@ -10,15 +10,15 @@
       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <context:property-placeholder location="classpath:/*.properties" />
+    <!--<context:property-placeholder location="classpath:db.properties"  ignore-unresolvable="true"/>-->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="${jdbc.jdbcUrl}" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521/orcl" />
 		<!--<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.40.128:1521:sao" />-->
 		<!--<property name="jdbcUrl" value="jdbc:oracle:thin:@124.205.234.163:65004:orcl" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.56.101:1521:orcl"/>-->
-		<property name="user" value="${jdbc.user}" />
-		<property name="password" value="${jdbc.password}" />
+		<property name="user" value="ghftest" />
+		<property name="password" value="123456" />
 		<property name="acquireIncrement" value="2" />
 		<property name="initialPoolSize" value="5" />
 		<property name="maxIdleTime" value="60" />
@@ -35,9 +35,8 @@
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
-		<!-- 自动扫描mapping.xml文件 -->
-		<property name="mapperLocations" value="classpath*:mybatis/**/*.xml">
+        <!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:mybatis/*.xml">
 		</property>
 	</bean>
 
