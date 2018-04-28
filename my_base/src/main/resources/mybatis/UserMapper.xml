@@ -184,32 +184,32 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update T_USER
     <set >
-      <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.userName != null" >
-        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="record.realName != null" >
-        REAL_NAME = #{record.realName,jdbcType=VARCHAR},
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null" >
-        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="record.gender != null" >
-        GENDER = #{record.gender,jdbcType=VARCHAR},
+      <if test="gender != null" >
+        GENDER = #{gender,jdbcType=VARCHAR},
       </if>
-      <if test="record.bod != null" >
-        BOD = #{record.bod,jdbcType=TIMESTAMP},
+      <if test="bod != null" >
+        BOD = #{bod,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.status != null" >
-        STATUS = #{record.status,jdbcType=VARCHAR},
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
       </if>
-      <if test="record.email != null" >
-        EMAIL = #{record.email,jdbcType=VARCHAR},
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="record.phoneNumber != null" >
-        PHONE_NUMBER = #{record.phoneNumber,jdbcType=VARCHAR},
+      <if test="phoneNumber != null" >
+        PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -218,15 +218,15 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update T_USER
-    set USER_ID = #{record.userId,jdbcType=VARCHAR},
-      USER_NAME = #{record.userName,jdbcType=VARCHAR},
-      REAL_NAME = #{record.realName,jdbcType=VARCHAR},
-      PASSWORD = #{record.password,jdbcType=VARCHAR},
-      GENDER = #{record.gender,jdbcType=VARCHAR},
-      BOD = #{record.bod,jdbcType=TIMESTAMP},
-      STATUS = #{record.status,jdbcType=VARCHAR},
-      EMAIL = #{record.email,jdbcType=VARCHAR},
-      PHONE_NUMBER = #{record.phoneNumber,jdbcType=VARCHAR}
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      REAL_NAME = #{realName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=VARCHAR},
+      BOD = #{bod,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -277,6 +277,14 @@
     <!--自定义的方法-->
     <!--根据用户注册账号后获得所用用户信息-->
     <select id="queryUserByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from T_USER
+        where USER_NAME = #{userName,jdbcType=VARCHAR}
+    </select>
+
+    <!--根据用户名称获得用户角色-->
+    <select id="getRoleByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
         select
         <include refid="Base_Column_List" />
         from T_USER

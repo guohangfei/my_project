@@ -317,7 +317,7 @@
                   <li class="active">
                       <a class="" href="index">
                           <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
+                          <span>主页</span>
                       </a>
                   </li>
 				  <li class="sub-menu">
@@ -403,7 +403,7 @@
 				</div>
 			</div>
               
-            <div class="row">
+            <div class="row" id="startSpider">
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="info-box blue-bg">
 						<i class="fa fa-cloud-download"></i>
@@ -1075,6 +1075,7 @@
 	<script src="${basePath}resource/js/sparklines.js"></script>
 	<script src="${basePath}resource/js/charts.js"></script>
 	<script src="${basePath}resource/js/jquery.slimscroll.min.js"></script>
+     <script src="${basePath}resource/index.js"></script>
   <script>
 
       //knob

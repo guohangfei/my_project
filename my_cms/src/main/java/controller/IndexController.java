@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexController {
 
     private Logger log = LoggerFactory.getLogger("IndexController");
-
     @RequestMapping(value = "/index",method = { RequestMethod.GET, RequestMethod.POST })
     public String index() {
         System.out.println("进入首页");

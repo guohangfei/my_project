@@ -64,8 +64,6 @@ public class GoodImg implements PageProcessor {
                     e.printStackTrace();
                 }
             }
-
-
         }
     }
 
@@ -79,7 +77,7 @@ public class GoodImg implements PageProcessor {
     }
 
     public static void main(String[] args) {
-        //启动
+        //启动爬虫
         Spider.create(new GoodImg())
                 //添加初始化的URL
                 .addUrl("http://www.27270.com/ent/lianglimeimo/list_12_1.html")
@@ -88,4 +86,6 @@ public class GoodImg implements PageProcessor {
                 //运行
                 .run();
     }
+
+
 }

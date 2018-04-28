@@ -6,6 +6,7 @@ import entity.UserExample;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.UserService;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -36,6 +37,5 @@ public class UserController extends BaseController {
          User resultUser=listUser.isEmpty()?new User():listUser.get(0);
          return  resultUser;
      }
-
 
 }

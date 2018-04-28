@@ -192,35 +192,35 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update T_SYS_LOG
     <set >
-      <if test="record.logId != null" >
-        LOG_ID = #{record.logId,jdbcType=VARCHAR},
+      <if test="logId != null" >
+        LOG_ID = #{logId,jdbcType=VARCHAR},
       </if>
-      <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.ipaddress != null" >
-        IPADDRESS = #{record.ipaddress,jdbcType=VARCHAR},
+      <if test="ipaddress != null" >
+        IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null" >
-        TYPE = #{record.type,jdbcType=VARCHAR},
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="record.logClass != null" >
-        LOG_CLASS = #{record.logClass,jdbcType=VARCHAR},
+      <if test="logClass != null" >
+        LOG_CLASS = #{logClass,jdbcType=VARCHAR},
       </if>
-      <if test="record.logMethod != null" >
-        LOG_METHOD = #{record.logMethod,jdbcType=VARCHAR},
+      <if test="logMethod != null" >
+        LOG_METHOD = #{logMethod,jdbcType=VARCHAR},
       </if>
-      <if test="record.logParameters != null" >
-        LOG_PARAMETERS = #{record.logParameters,jdbcType=VARCHAR},
+      <if test="logParameters != null" >
+        LOG_PARAMETERS = #{logParameters,jdbcType=VARCHAR},
       </if>
-      <if test="record.status != null" >
-        STATUS = #{record.status,jdbcType=VARCHAR},
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
       </if>
-      <if test="record.message != null" >
-        MESSAGE = #{record.message,jdbcType=VARCHAR},
+      <if test="message != null" >
+        MESSAGE = #{message,jdbcType=VARCHAR},
       </if>
-      <if test="record.logTime != null" >
-        LOG_TIME = #{record.logTime,jdbcType=TIMESTAMP},
+      <if test="logTime != null" >
+        LOG_TIME = #{logTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -229,16 +229,16 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update T_SYS_LOG
-    set LOG_ID = #{record.logId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=VARCHAR},
-      IPADDRESS = #{record.ipaddress,jdbcType=VARCHAR},
-      TYPE = #{record.type,jdbcType=VARCHAR},
-      LOG_CLASS = #{record.logClass,jdbcType=VARCHAR},
-      LOG_METHOD = #{record.logMethod,jdbcType=VARCHAR},
-      LOG_PARAMETERS = #{record.logParameters,jdbcType=VARCHAR},
-      STATUS = #{record.status,jdbcType=VARCHAR},
-      MESSAGE = #{record.message,jdbcType=VARCHAR},
-      LOG_TIME = #{record.logTime,jdbcType=TIMESTAMP}
+    set LOG_ID = #{logId,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      LOG_CLASS = #{logClass,jdbcType=VARCHAR},
+      LOG_METHOD = #{logMethod,jdbcType=VARCHAR},
+      LOG_PARAMETERS = #{logParameters,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      MESSAGE = #{message,jdbcType=VARCHAR},
+      LOG_TIME = #{logTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -152,20 +152,20 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update T_ROLE
     <set >
-      <if test="record.roleId != null" >
-        ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
       </if>
-      <if test="record.roleName != null" >
-        ROLE_NAME = #{record.roleName,jdbcType=VARCHAR},
+      <if test="roleName != null" >
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="record.roleDescription != null" >
-        ROLE_DESCRIPTION = #{record.roleDescription,jdbcType=VARCHAR},
+      <if test="roleDescription != null" >
+        ROLE_DESCRIPTION = #{roleDescription,jdbcType=VARCHAR},
       </if>
-      <if test="record.firstPage != null" >
-        FIRST_PAGE = #{record.firstPage,jdbcType=VARCHAR},
+      <if test="firstPage != null" >
+        FIRST_PAGE = #{firstPage,jdbcType=VARCHAR},
       </if>
-      <if test="record.flag != null" >
-        FLAG = #{record.flag,jdbcType=VARCHAR},
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -174,11 +174,11 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update T_ROLE
-    set ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
-      ROLE_NAME = #{record.roleName,jdbcType=VARCHAR},
-      ROLE_DESCRIPTION = #{record.roleDescription,jdbcType=VARCHAR},
-      FIRST_PAGE = #{record.firstPage,jdbcType=VARCHAR},
-      FLAG = #{record.flag,jdbcType=VARCHAR}
+    set ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      ROLE_DESCRIPTION = #{roleDescription,jdbcType=VARCHAR},
+      FIRST_PAGE = #{firstPage,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -41,6 +41,7 @@
             <artifactId>my_base</artifactId>
         </dependency>
 
+
         <dependency>
             <groupId>com.my</groupId>
             <artifactId>my_log</artifactId>
@@ -175,6 +176,10 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-ehcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.my</groupId>
+            <artifactId>my_util</artifactId>
         </dependency>
 
     </dependencies>

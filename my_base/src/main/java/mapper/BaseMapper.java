@@ -4,8 +4,11 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * @author ghf
+ */
 public interface BaseMapper<T, E>{
-	
+
     int countByExample(E example);
 
     int deleteByExample(E example);

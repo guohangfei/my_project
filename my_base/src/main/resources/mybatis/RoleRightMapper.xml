@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mapper.RightMapper" >
-  <resultMap id="BaseResultMap" type="entity.Right" >
+<mapper namespace="mapper.RoleRightMapper" >
+  <resultMap id="BaseResultMap" type="entity.RoleRight" >
+    <id column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
     <id column="RIGHT_ID" property="rightId" jdbcType="VARCHAR" />
-    <result column="RIGHT_NAME" property="rightName" jdbcType="VARCHAR" />
-    <result column="RIGHT_DESCRIPTION" property="rightDescription" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,16 +64,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    RIGHT_ID, RIGHT_NAME, RIGHT_DESCRIPTION
+    ROLE_ID, RIGHT_ID
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.RightExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.RoleRightExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from T_RIGHT
+    from T_ROLE_RIGHT
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -82,70 +81,54 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from T_RIGHT
-    where RIGHT_ID = #{rightId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from T_RIGHT
-    where RIGHT_ID = #{rightId,jdbcType=VARCHAR}
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from T_ROLE_RIGHT
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+      and RIGHT_ID = #{rightId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="entity.RightExample" >
-    delete from T_RIGHT
+  <delete id="deleteByExample" parameterType="entity.RoleRightExample" >
+    delete from T_ROLE_RIGHT
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="entity.Right" >
-    insert into T_RIGHT (RIGHT_ID, RIGHT_NAME, RIGHT_DESCRIPTION
-      )
-    values (#{rightId,jdbcType=VARCHAR}, #{rightName,jdbcType=VARCHAR}, #{rightDescription,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="entity.RoleRight" >
+    insert into T_ROLE_RIGHT (ROLE_ID, RIGHT_ID)
+    values (#{roleId,jdbcType=VARCHAR}, #{rightId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="entity.Right" >
-    insert into T_RIGHT
+  <insert id="insertSelective" parameterType="entity.RoleRight" >
+    insert into T_ROLE_RIGHT
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
       <if test="rightId != null" >
         RIGHT_ID,
       </if>
-      <if test="rightName != null" >
-        RIGHT_NAME,
-      </if>
-      <if test="rightDescription != null" >
-        RIGHT_DESCRIPTION,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
       <if test="rightId != null" >
         #{rightId,jdbcType=VARCHAR},
       </if>
-      <if test="rightName != null" >
-        #{rightName,jdbcType=VARCHAR},
-      </if>
-      <if test="rightDescription != null" >
-        #{rightDescription,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="entity.RightExample" resultType="java.lang.Integer" >
-    select count(*) from T_RIGHT
+  <select id="countByExample" parameterType="entity.RoleRightExample" resultType="java.lang.Integer" >
+    select count(*) from T_ROLE_RIGHT
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update T_RIGHT
+    update T_ROLE_RIGHT
     <set >
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
       <if test="rightId != null" >
         RIGHT_ID = #{rightId,jdbcType=VARCHAR},
-      </if>
-      <if test="rightName != null" >
-        RIGHT_NAME = #{rightName,jdbcType=VARCHAR},
-      </if>
-      <if test="rightDescription != null" >
-        RIGHT_DESCRIPTION = #{rightDescription,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -153,30 +136,18 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update T_RIGHT
-    set RIGHT_ID = #{rightId,jdbcType=VARCHAR},
-      RIGHT_NAME = #{rightName,jdbcType=VARCHAR},
-      RIGHT_DESCRIPTION = #{rightDescription,jdbcType=VARCHAR}
+    update T_ROLE_RIGHT
+    set ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      RIGHT_ID = #{rightId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="entity.Right" >
-    update T_RIGHT
-    <set >
-      <if test="rightName != null" >
-        RIGHT_NAME = #{rightName,jdbcType=VARCHAR},
-      </if>
-      <if test="rightDescription != null" >
-        RIGHT_DESCRIPTION = #{rightDescription,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where RIGHT_ID = #{rightId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="entity.Right" >
-    update T_RIGHT
-    set RIGHT_NAME = #{rightName,jdbcType=VARCHAR},
-      RIGHT_DESCRIPTION = #{rightDescription,jdbcType=VARCHAR}
-    where RIGHT_ID = #{rightId,jdbcType=VARCHAR}
-  </update>
+
+    <!--以下部分是自定义的方法-->
+    <!--根据用户的角色id 获得用户的对应的权限集合-->
+    <select id="getRightByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from T_ROLE_RIGHT
+        where  ROLE_ID=#{roleId,jdbcType=VARCHAR}
+    </select>
 </mapper>

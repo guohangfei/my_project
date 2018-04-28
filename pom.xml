@@ -84,6 +84,12 @@
 
         <dependency>
             <groupId>com.my</groupId>
+            <artifactId>my_spider</artifactId>
+            <version>${log.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.my</groupId>
             <artifactId>my_util</artifactId>
             <version>${util.version}</version>
         </dependency>
