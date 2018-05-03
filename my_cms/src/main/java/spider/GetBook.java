@@ -1,14 +1,15 @@
 package spider;
 
 import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
-import util.io.*;
-
+import us.codecraft.webmagic.scheduler.PriorityScheduler;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import static spider.WriteStringToLocalFile.FILESUFFIXTYPE_TXT;
 
 /**
  *从小说网站爬取图书
@@ -22,6 +23,7 @@ public class GetBook implements PageProcessor {
        private static int  endPage=33413576;
        private static int startPage=33413565;
        private static int count =0;
+       private static String localPath="C:/Users/ghf/Desktop/";
 
     /**
      *     爬取的列表页，页数。
@@ -38,6 +40,7 @@ public class GetBook implements PageProcessor {
     public void process(Page page) {
         //        获得书籍名称
         String bookName = page.getHtml().xpath("//div[@class=\"leikuang_top\"]/a[2]/text()").toString();
+        WriteStringToLocalFile writeStringToLocalFile=new WriteStringToLocalFile();
         /**
          * 把所有的目录页都添加到 爬取的目标URL中
          */
@@ -54,32 +57,12 @@ public class GetBook implements PageProcessor {
 //            获得内容
             String content = page.getHtml().xpath("//div[@class=\"shuneirong\"]/text()").toString();
             String allContent=chapter+"\r\n"+content+"\r\n";
-//            将文本写入本地
-            FileOutputStream fop = null;
-            File file;
-            try {
-                file = new File("C:\\Users\\ghf\\Desktop\\"+bookName+".txt");
-                fop = new FileOutputStream(file,true);
 
-                if (!file.exists()) {
-                    file.createNewFile();
-                }
-                byte[] contentInBytes = allContent.getBytes();
-                fop.write(contentInBytes);
-                fop.flush();
-                fop.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (fop != null) {
-                        fop.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        try {
+            writeStringToLocalFile.startDown(allContent,localPath,bookName,FILESUFFIXTYPE_TXT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -89,18 +72,13 @@ public class GetBook implements PageProcessor {
         return site;
     }
 
+
     public static void main(String[] args) {
         long startTime, endTime;
         System.out.println("开始爬取...");
         startTime = System.currentTimeMillis();
         //启动爬虫
-        Spider.create(new GetBook())
-                //添加初始化的URL
-                .addUrl("https://www.freexs.org/novel/0/63/33413565.html")
-                //启动10个线程
-                .thread(1)
-                //运行
-                .run();
+        Spider.create(new GetBook()).setScheduler(new PriorityScheduler()).run();;
         endTime = System.currentTimeMillis();
         System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒，抓取了"+count+"条记录");
     }
