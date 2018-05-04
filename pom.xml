@@ -24,8 +24,8 @@
         <base.version>0.0.1-SNAPSHOT</base.version>
         <cms.version>0.0.1-SNAPSHOT</cms.version>
         <log.version>0.0.1-SNAPSHOT</log.version>
-        <util.version>0.0.1-SANPSHOT</util.version>
-        <spider.version>0.0.1-SANPSHOT</spider.version>
+        <util.version>0.0.1-SNAPSHOT</util.version>
+        <spider.version>0.0.1-SNAPSHOT</spider.version>
         <!-- 系统 -->
         <javaee.version>7.0</javaee.version>
         <jstl.version>1.2</jstl.version>

@@ -29,7 +29,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>my_cms</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>${cms.version}</version>
     <build>
         <finalName>cms</finalName>
     </build>
@@ -39,17 +39,6 @@
         <dependency>
             <groupId>com.my</groupId>
             <artifactId>my_base</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.my</groupId>
-            <artifactId>my_log</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.my</groupId>
-            <artifactId>my_util</artifactId>
         </dependency>
 
         <dependency>
@@ -176,6 +165,14 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-ehcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.my</groupId>
+            <artifactId>my_util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.my</groupId>
+            <artifactId>my_util</artifactId>
         </dependency>
         <dependency>
             <groupId>com.my</groupId>

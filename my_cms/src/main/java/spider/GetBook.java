@@ -1,15 +1,17 @@
 package spider;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.scheduler.PriorityScheduler;
+import util.io.WriteStringToLocalFile;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import static spider.WriteStringToLocalFile.FILESUFFIXTYPE_TXT;
+
+import static util.io.WriteStringToLocalFile.FILESUFFIXTYPE_TXT;
 
 /**
  *从小说网站爬取图书
