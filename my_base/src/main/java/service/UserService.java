@@ -49,7 +49,7 @@ public class UserService extends GeneralService<UserMapper, User,UserExample>{
      * @param            userName 用户名称
      * @return     用户角色实体类
     **/
-    public Role getRoleByUserName(String userName) {
+    public List<Role> getRoleByUserName(String userName) {
        return userRoleMapper.getRoleByUserName(userName);
     }
 

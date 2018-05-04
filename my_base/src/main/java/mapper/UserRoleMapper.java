@@ -4,6 +4,8 @@ import entity.Role;
 import entity.UserRole;
 import entity.UserRoleExample;
 
+import java.util.List;
+
 /**
  * @author ghf
  */
@@ -16,5 +18,5 @@ public interface UserRoleMapper  extends BaseMapper<UserRole,UserRoleExample>{
      * @param            userName 用户名称
      * @return     用户角色实体类
      **/
-    Role getRoleByUserName(String userName);
+    List<Role> getRoleByUserName(String userName);
 }

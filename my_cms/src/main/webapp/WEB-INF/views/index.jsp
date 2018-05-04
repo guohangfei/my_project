@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -313,13 +314,15 @@
       <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
+              <ul class="sidebar-menu">
+<shiro:hasPermission name="product:add">
                   <li class="active">
                       <a class="" href="index">
                           <i class="icon_house_alt"></i>
                           <span>主页</span>
                       </a>
                   </li>
+</shiro:hasPermission>
 				  <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
