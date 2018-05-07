@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
     <meta name="author" content="GeeksLabs">
-    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <meta name="keyword" content="Creative, 主页, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Grids | Creative - Bootstrap 3 Responsive Admin Template</title>
@@ -305,7 +306,7 @@
                   <li class="active">
                       <a class="" href="index">
                           <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
+                          <span>主页</span>
                       </a>
                   </li>
 				  <li class="sub-menu">
@@ -332,7 +333,7 @@
                       </ul>
                   </li>
                   <li>
-                      <a class="" href="widgets.html">
+                      <a class="" href="widgets">
                           <i class="icon_genius"></i>
                           <span>Widgets</span>
                       </a>

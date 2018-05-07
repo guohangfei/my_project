@@ -378,13 +378,13 @@ For tablets and phones
 	}
 
 	/***
-	Dashboard date range panel
+	主页 date range panel
 	***/
-	.page-content .breadcrumb .dashboard-date-range  {
+	.page-content .breadcrumb .主页-date-range  {
 		padding-bottom: 8px;
 	} 
 
-	.page-content .breadcrumb .dashboard-date-range span {
+	.page-content .breadcrumb .主页-date-range span {
 		display: none;
 	}
 

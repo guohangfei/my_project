@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
     <meta name="author" content="GeeksLabs">
-    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <meta name="keyword" content="Creative, 主页, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="${basePath}resource/img/favicon.png">
 
     <title>Creative - Bootstrap Admin Template</title>
@@ -403,10 +403,10 @@
               <!--overview start-->
 			  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+					<h3 class="page-header"><i class="fa fa-laptop"></i> 主页</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="index">Home</a></li>
-						<li><i class="fa fa-laptop"></i>Dashboard</li>						  	
+						<li><i class="fa fa-laptop"></i>主页</li>
 					</ol>
 				</div>
 			</div>

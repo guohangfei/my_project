@@ -2570,7 +2570,7 @@ input[type="button"].btn-block {
 .glyphicon-fullscreen:before {
   content: "\e140";
 }
-.glyphicon-dashboard:before {
+.glyphicon-主页:before {
   content: "\e141";
 }
 .glyphicon-heart-empty:before {
