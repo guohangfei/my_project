@@ -146,8 +146,12 @@
 
     <!--以下部分是自定义方法-->
     <!--根据以后名称活动角色信息-->
-    <select id="getRoleByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select * from T_USER_ROLE
-        where  USER_ID=#{userId,jdbcType=VARCHAR}
+    <select id="getRoleByUserId" resultType="result.KeyValudBean" parameterType="java.lang.String">
+          select T_ROLE.ROLE_ID key,T_ROLE.ROLE_NAME value
+           from T_USER_ROLE,T_ROLE
+           where
+            T_USER_ROLE.USER_ID=#{userId,jdbcType=VARCHAR}
+             and
+              T_USER_ROLE.USER_ID=T_ROLE.ROLE_ID
     </select>
 </mapper>

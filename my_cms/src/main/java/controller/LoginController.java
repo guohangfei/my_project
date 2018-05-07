@@ -8,6 +8,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -43,62 +45,43 @@ public class LoginController {
      * @param         user
      * @return         对应的视图层
     **/
-    @RequiresPermissions("product:list")
     @RequestMapping(value = "/login",method = { RequestMethod.GET, RequestMethod.POST })
     public String login(User user,Model model) {
         // 如果已经登陆，无需重新登录
+        User resUser = userController.queryUserByName(user.getUserName());
         if (isRelogin(user)){
             return  "index";
         }
 
         //用户为空时，直接跳转登录页面：解决启动为空登录报错
         if (StringUtil.isEmpty(user.getUserName())){
+            model.addAttribute("failMsg", "用户不能为空！");
             return  "login";
         }
 
         //用户名称不存在，直接跳转登录页面
-        User resUser = userController.queryUserByName(user.getUserName());
+
         if (StringUtil.isEmpty(resUser.getUserName())){
+            model.addAttribute("failMsg", "用户不存在，请更换！");
             return  "login";
         }
 
         // 组装token，包括用户名、密码
         UsernamePasswordToken usernamePasswordToken = new
                 UsernamePasswordToken(user.getUserName(),user.getPassword());
+        Subject subject = SecurityUtils.getSubject();
 
         // shiro登陆验证
         try {
-            SecurityUtils.getSubject().login(usernamePasswordToken);
-        } catch (UnknownAccountException ex) {
-            model.addAttribute("failMsg", "用户不存在或密码错误！");
-            return "login";
-        } catch (IncorrectCredentialsException ex) {
-            model.addAttribute("failMsg", "用户不存在或者密码错误！");
-            return "login";
-        } catch (AuthenticationException ex) {
-            model.addAttribute("failMsg", "未知错误，请重试！");
-            return"login";
+            subject.login(usernamePasswordToken);
+            org.apache.shiro.session.Session session = subject.getSession();
+            session.setAttribute("userName", resUser.getUserName());
         } catch (Exception ex) {
-            model.addAttribute("failMsg", "未知错误，请重试！");
+            model.addAttribute("failMsg", "用户不存在或密码错误！");
             return"login";
         }
+
         return "index";
-    }
-
-    /**
-     *权限的验证
-     *
-     * @Author:          郭航飞
-     * @CreateDate:   2018/5/4 14:01
-     * @param
-     * @return
-    **/
-    @ResponseBody
-    @RequestMapping("/rightvalidate")
-
-    public String rightValidate(){
-        System.out.printf("进行权限验证");
-        return "1";
     }
 
     /**
@@ -118,6 +101,18 @@ public class LoginController {
         return "login";
     }
 
+
+    /**
+     *没有权限访问页面
+     *
+     * @Author:          郭航飞
+     * @CreateDate:   2018/5/7 9:17
+    **/
+    @RequestMapping(value = "/unauth")
+    public  String unauth(){
+        return "unauth";
+    }
+
     /**
      * @Author:          郭航飞
      * @Description:：已经登录处理
@@ -132,5 +127,6 @@ public class LoginController {
         // 需要重新登陆
         return false;
     }
+
 
 }

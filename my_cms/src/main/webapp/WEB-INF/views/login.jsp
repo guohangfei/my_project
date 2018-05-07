@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,11 +47,17 @@
                 <input name="password" id="password" type="password" class="form-control" placeholder="Password">
             </div>
             <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
+                <input type="checkbox" value="remember-me"> 记住我
+                <span class="pull-right"> <a href="#">忘记密码?</a></span>
             </label>
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-            <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">登录</button>
+            <button class="btn btn-info btn-lg btn-block" type="submit">注册</button>
+            <p style="color: red;font-size: 20px;">
+                <c:if test="${failMsg!=null}">
+                ${failMsg}
+                </c:if>
+            </p>
+
         </div>
       </form>
 

@@ -40,7 +40,7 @@
             </div>
 
             <!--logo start-->
-            <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+            <a href="index" class="logo">Nice <span class="lite">Admin</span></a>
             <!--logo end-->
 
             <div class="nav search-row" id="top_menu">
@@ -261,7 +261,7 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <span class="username">${sessionScope.userName }</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
@@ -279,7 +279,7 @@
                                 <a href="#"><i class="icon_chat_alt"></i> Chats</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="login"><i class="icon_key_alt"></i> Log Out</a>
                             </li>
                             <li>
                                 <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
@@ -302,7 +302,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">                
                   <li class="active">
-                      <a class="" href="index.html">
+                      <a class="" href="index">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
                       </a>
@@ -364,7 +364,7 @@
                       </a>
                       <ul class="sub">                          
                           <li><a class="" href="profile.html">Profile</a></li>
-                          <li><a class="" href="login.html"><span>Login Page</span></a></li>
+                          <li><a class="" href="login"><span>Login Page</span></a></li>
                           <li><a class="" href="blank.html">Blank Page</a></li>
                           <li><a class="" href="404.html">404 Error</a></li>
                       </ul>
@@ -383,7 +383,7 @@
 				<div class="col-lg-12">
 					<h3 class="page-header"><i class="fa fa-user-md"></i> Profile</h3>
 					<ol class="breadcrumb">
-						<li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+						<li><i class="fa fa-home"></i><a href="index">Home</a></li>
 						<li><i class="icon_documents_alt"></i>Pages</li>
 						<li><i class="fa fa-user-md"></i>Profile</li>
 					</ol>
@@ -395,14 +395,14 @@
                     <div class="profile-widget profile-widget-info">
                           <div class="panel-body">
                             <div class="col-lg-2 col-sm-2">
-                              <h4>Jenifer Smith</h4>               
+                              <h4>${sessionScope.userName }</h4>
                               <div class="follow-ava">
                                   <img src="img/profile-widget-avatar.jpg" alt="">
                               </div>
                               <h6>Administrator</h6>
                             </div>
                             <div class="col-lg-4 col-sm-4 follow-info">
-                                <p>Hello I’m Jenifer Smith, a leading expert in interactive and creative design.</p>
+                                <p>Hello I’m ${sessionScope.userName }, a leading expert in interactive and creative design.</p>
                                 <p>@jenifersmith</p>
 								<p><i class="fa fa-twitter">jenifertweet</i></p>
                                 <h6>
@@ -575,7 +575,7 @@
                                   <div id="profile" class="tab-pane">
                                     <section class="panel">
                                       <div class="bio-graph-heading">
-                                                Hello I’m Jenifer Smith, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
+                                                Hello I’m ${sessionScope.userName }, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
                                       </div>
                                       <div class="panel-body bio-graph-info">
                                           <h1>Bio Graph</h1>

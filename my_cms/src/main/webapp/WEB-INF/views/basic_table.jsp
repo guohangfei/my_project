@@ -40,7 +40,7 @@
             </div>
 
             <!--logo start-->
-            <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+            <a href="index" class="logo">Nice <span class="lite">Admin</span></a>
             <!--logo end-->
 
             <div class="nav search-row" id="top_menu">
@@ -261,7 +261,7 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <span class="username">${sessionScope.userName }</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
@@ -279,7 +279,7 @@
                                 <a href="#"><i class="icon_chat_alt"></i> Chats</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="login"><i class="icon_key_alt"></i> Log Out</a>
                             </li>
                             <li>
                                 <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
@@ -302,7 +302,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">                
                   <li class="">
-                      <a class="" href="index.html">
+                      <a class="" href="index">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
                       </a>
@@ -364,7 +364,7 @@
                       </a>
                       <ul class="sub">                          
                           <li><a class="" href="profile.html">Profile</a></li>
-                          <li><a class="" href="login.html"><span>Login Page</span></a></li>
+                          <li><a class="" href="login"><span>Login Page</span></a></li>
                           <li><a class="" href="blank.html">Blank Page</a></li>
                           <li><a class="" href="404.html">404 Error</a></li>
                       </ul>
@@ -382,7 +382,7 @@
 				<div class="col-lg-12">
 					<h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
 					<ol class="breadcrumb">
-						<li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+						<li><i class="fa fa-home"></i><a href="index">Home</a></li>
 						<li><i class="fa fa-table"></i>Table</li>
 						<li><i class="fa fa-th-list"></i>Basic Table</li>
 					</ol>

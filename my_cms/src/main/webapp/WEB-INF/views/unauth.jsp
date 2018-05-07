@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,10 +32,11 @@
 
   <body>
    <div class="page-404">
-    <p class="text-404">404</p>
+    <p class="text-404">权限不足</p>
+    <a href="#" onClick="javascript :history.back(-1)">返回上一页</a>
 
     <h2>Aww Snap!</h2>
-    <p>Something went wrong or that page doesn’t exist yet. <br><a href="${basePath}index">Return Home</a></p>
+    <p>你没有权限访问该页面<br><a href="${basePath}index.jsp">Return Home</a></p>
   </div>
   
   </body>

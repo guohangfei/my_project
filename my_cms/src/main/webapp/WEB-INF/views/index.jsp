@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -275,7 +276,7 @@
                             <span class="profile-ava">
                                 <img alt="" src="${basePath}resource/img/avatar1_small.jpg">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <span class="username">${sessionScope.userName }</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
@@ -315,29 +316,32 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">
-<shiro:hasPermission name="product:add">
+                <shiro:hasRole name="admin">
                   <li class="active">
                       <a class="" href="index">
                           <i class="icon_house_alt"></i>
                           <span>主页</span>
                       </a>
                   </li>
-</shiro:hasPermission>
+                </shiro:hasRole>
+                  <shiro:hasPermission name="query">
 				  <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
-                          <span>Forms</span>
+                          <span>表单显示</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
                           <li><a class="" href="form_component">Form Elements</a></li>
                           <li><a class="" href="form_validation">Form Validation</a></li>
                       </ul>
-                  </li>       
+                  </li>
+                  </shiro:hasPermission>
+                  <shiro:hasPermission name="add">
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_desktop"></i>
-                          <span>UI Fitures</span>
+                          <span>UI显示</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
@@ -346,16 +350,17 @@
                           <li><a class="" href="grids">Grids</a></li>
                       </ul>
                   </li>
+                  </shiro:hasPermission>
                   <li>
                       <a class="" href="widgets">
                           <i class="icon_genius"></i>
-                          <span>Widgets</span>
+                          <span>小部件</span>
                       </a>
                   </li>
                   <li>                     
                       <a class="" href="chart-chartjs">
                           <i class="icon_piechart"></i>
-                          <span>Charts</span>
+                          <span>图表</span>
                           
                       </a>
                                          
@@ -364,7 +369,7 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_table"></i>
-                          <span>Tables</span>
+                          <span>表格</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
@@ -375,7 +380,7 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_documents_alt"></i>
-                          <span>Pages</span>
+                          <span>页面</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">                          
@@ -754,7 +759,7 @@
 
                         <div class="chat-content">
                           <!-- In the chat meta, first include "time" then "name" -->
-                          <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
+                          <div class="chat-meta">3 hours ago <span class="pull-right">${sessionScope.userName }</span></div>
                           Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
                           <div class="clearfix"></div>
                         </div>
@@ -780,7 +785,7 @@
 
                         <div class="chat-content">
                           <!-- In the chat meta, first include "time" then "name" -->
-                          <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
+                          <div class="chat-meta">3 hours ago <span class="pull-right">${sessionScope.userName }</span></div>
                           Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
                           <div class="clearfix"></div>
                         </div>
@@ -818,7 +823,7 @@
                               <div class="col-lg-4">
                                 <span class="profile-ava pull-right">
                                         <img alt="" class="simple" src="${basePath}resource/img/avatar1_small.jpg">
-                                        Jenifer smith
+                                       ${sessionScope.userName }
                                 </span>                                
                               </div>
                             </div>

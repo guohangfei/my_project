@@ -2,6 +2,7 @@ package mapper;
 
 import entity.*;
 import org.apache.ibatis.annotations.Param;
+import result.KeyValudBean;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface RoleRightMapper  extends BaseMapper<RoleRight, RoleRightExample
      * @param           roleId  角色id
      * @return            权限的List集合
      **/
-    List<Right> getRightByRoleId(String roleId);
+    List<KeyValudBean> getRightByRoleId(String roleId);
 }

@@ -1,9 +1,7 @@
 package shiro;
 
 import controller.UserController;
-import entity.Right;
-import entity.Role;
-import entity.User;
+import entity.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -16,8 +14,8 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import result.KeyValudBean;
 import service.UserService;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -48,24 +46,24 @@ public class JdbcRealmCustom extends AuthorizingRealm {
         // 从数据库中获取当前登录用户的详细信息
         User user=userController.queryUserByName(username);
         if (user!=null){
-//            根据用户名称活动用户角色  一个用户可以拥有多个角色
-            List<Role> roles=userService.getRoleByUserName(user.getUserName());
-            List<Right> Rights ;
-            List<String> roleAllList = new ArrayList<String>();
-            List<String> rightList = new ArrayList<String>();
-            for (Role role:roles) {
-                roleAllList.add(role.getRoleId());
+//            根据用户名称获得用户角色  一个用户可以拥有多个角色
+            List<KeyValudBean> userRoles=userService.getRoleByUserId(user.getUserId());
+            Set<String> rightList= new HashSet<String>();;
+            Set<String> roleList = new HashSet<String>();;
+            List<KeyValudBean> rightNames ;
+            for (KeyValudBean userRole:userRoles) {
+                roleList.add(userRole.getValue());
                 //查询对应角色的对应权限集合
-                Rights=userService.getRightByRoleId(role.getRoleId());
-                for (Right right : Rights) {
-                    if(StringUtils.isNotBlank(right.getRightName())){
-                        rightList.add(right.getRightName());
+                rightNames=userService.getRightByRoleId(userRole.getKey());
+                for (KeyValudBean rightName : rightNames) {
+                    if(StringUtils.isNotBlank(rightName.getValue())){
+                        rightList.add(rightName.getValue());
                     }
                 }
             }
 
             //赋角色
-            info.addRoles(roleAllList);
+            info.addRoles(roleList);
             //赋权限
             info.addStringPermissions(rightList);
             return info;

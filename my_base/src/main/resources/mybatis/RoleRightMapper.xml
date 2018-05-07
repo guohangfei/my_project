@@ -146,8 +146,11 @@
 
     <!--以下部分是自定义的方法-->
     <!--根据用户的角色id 获得用户的对应的权限集合-->
-    <select id="getRightByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select * from T_ROLE_RIGHT
-        where  ROLE_ID=#{roleId,jdbcType=VARCHAR}
+    <select id="getRightByRoleId"  resultType="result.KeyValudBean" parameterType="java.lang.String">
+        select T_ROLE_RIGHT.Role_Id key,T_RIGHT.Right_Name value from T_ROLE_RIGHT,T_RIGHT
+         where
+          T_ROLE_RIGHT.ROLE_ID=#{roleId,jdbcType=VARCHAR}
+          and
+          T_RIGHT.right_id=T_ROLE_RIGHT.right_id
     </select>
 </mapper>

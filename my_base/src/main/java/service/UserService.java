@@ -1,10 +1,7 @@
 package service;
 
 import com.github.pagehelper.util.StringUtil;
-import entity.Right;
-import entity.Role;
-import entity.User;
-import entity.UserExample;
+import entity.*;
 import mapper.RoleRightMapper;
 import mapper.UserMapper;
 import mapper.UserRoleMapper;
@@ -12,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import result.KeyValudBean;
 
 import java.util.List;
 
@@ -46,11 +44,11 @@ public class UserService extends GeneralService<UserMapper, User,UserExample>{
      * @Author:          郭航飞
      * @Description:：  根据以后名称活动角色信息
      * @CreateDate:   2018/4/26 9:33
-     * @param            userName 用户名称
-     * @return     用户角色实体类
+     * @param            userId 用户id
+     * @return     用户角色实
     **/
-    public List<Role> getRoleByUserName(String userName) {
-       return userRoleMapper.getRoleByUserName(userName);
+    public List<KeyValudBean> getRoleByUserId(String userId) {
+       return userRoleMapper.getRoleByUserId(userId);
     }
 
     /**
@@ -60,7 +58,7 @@ public class UserService extends GeneralService<UserMapper, User,UserExample>{
      * @param           roleId  角色id
      * @return            权限的List集合
     **/
-    public List<Right> getRightByRoleId(String roleId) {
+    public List<KeyValudBean> getRightByRoleId(String roleId) {
        return roleRightMapper.getRightByRoleId(roleId);
     }
 }
