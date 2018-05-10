@@ -29,14 +29,7 @@ public class UserController extends BaseController {
 	  * @CreateDate:   2018/4/12 18:55
 	  */
      public User queryUserByName(String userName) {
-         UserExample userExample=new UserExample();
-         UserExample.Criteria criteria = userExample.createCriteria();
-         if (StringUtil.isNotEmpty(userName)){
-             criteria.andUserNameEqualTo(userName);
-         }
-         List<User> listUser = userService.selectByExample(userExample);
-         User resultUser=listUser.isEmpty()?new User():listUser.get(0);
-         return  resultUser;
+         return  userService.queryUserByName(userName);
      }
 
 }

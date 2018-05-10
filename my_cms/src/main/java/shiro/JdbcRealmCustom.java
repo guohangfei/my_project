@@ -1,5 +1,6 @@
 package shiro;
 
+import com.github.pagehelper.util.StringUtil;
 import controller.UserController;
 import entity.*;
 import org.apache.commons.lang.StringUtils;
@@ -7,9 +8,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.ehcache.EhCache;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +36,12 @@ public class JdbcRealmCustom extends AuthorizingRealm {
     private Logger logger = LoggerFactory.getLogger("JdbcRealmCustom");
 
     @Autowired
-    private UserController userController;
-    @Autowired
     private UserService userService;
+    @Autowired
+    private EhCacheManager ehCacheManager;
+
+    private static String userName;
+    private User user;
 
     /**
      * 用户授权认证
@@ -41,10 +49,7 @@ public class JdbcRealmCustom extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        // 获取当前登录的用户名
-        String username = (String) super.getAvailablePrincipal(principalCollection);
         // 从数据库中获取当前登录用户的详细信息
-        User user=userController.queryUserByName(username);
         if (user!=null){
 //            根据用户名称获得用户角色  一个用户可以拥有多个角色
             List<KeyValudBean> userRoles=userService.getRoleByUserId(user.getUserId());
@@ -76,32 +81,45 @@ public class JdbcRealmCustom extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-
+        // 如果已经登陆，无需重新登录
+        //首先从缓存中获取记录
+        EhCache cache = (EhCache) ehCacheManager.getCache("userNameAndPass");
         logger.info("======用户登陆认证======");
         //UsernamePasswordToken对象用来存放提交的登录信息
-        String userName = authenticationToken.getPrincipal().toString();
+        userName = authenticationToken.getPrincipal().toString();
+        String password;
+        if (StringUtil.isEmpty((String)cache.get(userName))) {
+            user=userService.queryUserByName(userName);
+            password=user.getPassword();
+        }else{
+            password=(String)cache.get(userName);
+            System.err.printf("**********************去缓存获得密码******************************");
+        }
         //查出是否有此用户
-        User user=userController.queryUserByName(userName);
-        if(user!=null){
+//      缓存用户名和密码
+        cache.put(userName,password);
+        if(user!=null || StringUtil.isNotEmpty(password)){
             //若存在，将此用户存放到登录认证info中
-            return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());
+            return new SimpleAuthenticationInfo(userName, password, getName());
         }
         return null;
     }
 
+
+
     /**
-     * 将一些数据放到ShiroSession中,以便于其它地方使用
-     *
-     * 比如Controller,使用时直接用HttpSession.getAttribute(key)就可以取到
-     */
-    private void setSession(Object key, Object value) {
-        Subject currentUser = SecurityUtils.getSubject();
-        if (null != currentUser) {
-            Session session = currentUser.getSession();
-            System.out.println("Session默认超时时间为[" + session.getTimeout() + "]毫秒");
-            if (null != session) {
-                session.setAttribute(key, value);
-            }
+     * @Author:          郭航飞
+     * @Description:：已经登录处理
+     * @CreateDate:   2018/4/25 17:55
+     **/
+    private boolean isRelogin(User user) {
+        Subject us = SecurityUtils.getSubject();
+        if (us.isAuthenticated()) {
+            // 参数未改变，无需重新登录，默认为已经登录成功
+            return true;
         }
+        // 需要重新登陆
+        return false;
     }
+
 }

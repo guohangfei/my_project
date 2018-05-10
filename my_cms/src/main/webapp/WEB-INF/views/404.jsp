@@ -9,7 +9,7 @@
     <meta name="keyword" content="Creative, 主页, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>404 | Creative - Bootstrap 3 Responsive Admin Template</title>
+    <title>404</title>
 
     <!-- Bootstrap CSS -->    
     <link href="${basePath}resource/css/bootstrap.min.css" rel="stylesheet">

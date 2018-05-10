@@ -170,18 +170,6 @@
             <groupId>com.my</groupId>
             <artifactId>my_util</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.my</groupId>
-            <artifactId>my_util</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.my</groupId>
-            <artifactId>my_util</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.my</groupId>
-            <artifactId>my_util</artifactId>
-        </dependency>
 
     </dependencies>
 </project>

@@ -37,7 +37,14 @@ public class UserService extends GeneralService<UserMapper, User,UserExample>{
      * @return        用户的实体类
     **/
     public User queryUserByName(String userName) {
-        return  userMapper.queryUserByName(userName);
+        UserExample userExample=new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        if (StringUtil.isNotEmpty(userName)){
+            criteria.andUserNameEqualTo(userName);
+        }
+        List<User> listUser = userMapper.selectByExample(userExample);
+        User resultUser=listUser.isEmpty()?new User():listUser.get(0);
+        return  resultUser;
     }
 
     /**

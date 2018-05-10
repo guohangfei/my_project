@@ -10,7 +10,7 @@
     <meta name="keyword" content="Creative, 主页, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
+    <title>登录页面</title>
 
     <!-- Bootstrap CSS -->    
     <link href="${basePath}resource/css/bootstrap.min.css" rel="stylesheet">
@@ -23,6 +23,7 @@
     <!-- Custom styles -->
     <link href="${basePath}resource/css/style.css" rel="stylesheet">
     <link href="${basePath}resource/css/style-responsive.css" rel="stylesheet" />
+    <script src="${basePath}resource/js/jquery-1.8.3.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -52,17 +53,13 @@
             </label>
             <button class="btn btn-primary btn-lg btn-block" type="submit">登录</button>
             <button class="btn btn-info btn-lg btn-block" type="submit">注册</button>
-            <p style="color: red;font-size: 20px;">
+            <p id="warning" style="color: red;font-size: 20px;">
                 <c:if test="${failMsg!=null}">
                 ${failMsg}
                 </c:if>
             </p>
-
         </div>
       </form>
-
     </div>
-
-
   </body>
 </html>

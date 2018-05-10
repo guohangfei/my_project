@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache updateCheck="false"  name="shirocache">
-    <diskStore path="java.io.tmpdir"/>
+    <!--<diskStore path="java.io.tmpdir"/>-->
+    <diskStore path="E:\ehcache"/>
     <defaultCache
             maxElementsInMemory="10000"
             eternal="false"

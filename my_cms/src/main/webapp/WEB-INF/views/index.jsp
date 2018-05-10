@@ -11,7 +11,7 @@
     <meta name="keyword" content="Creative, 主页, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="${basePath}resource/img/favicon.png">
 
-    <title>Creative - Bootstrap Admin Template</title>
+    <title>主页</title>
 
     <!-- Bootstrap CSS -->    
     <link href="${basePath}resource/css/bootstrap.min.css" rel="stylesheet">
@@ -41,6 +41,8 @@
       <script src="${basePath}resource/js/html5shiv.js"></script>
       <script src="${basePath}resource/js/respond.min.js"></script>
       <script src="${basePath}resource/js/lte-ie7.js"></script>
+      <script src="${basePath}resource/js/jquery-1.8.3.min.js"></script>
+
     <![endif]-->
   </head>
 
