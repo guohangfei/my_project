@@ -9,7 +9,6 @@
         <module name="my_base" />
         <module name="my_cms" />
         <module name="my_log" />
-        <module name="my_project" />
         <module name="my_spider" />
         <module name="my_util" />
       </profile>
