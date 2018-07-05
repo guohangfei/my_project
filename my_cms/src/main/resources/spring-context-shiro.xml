@@ -58,40 +58,7 @@
      指定密码匹配所需要用到的加密对象
      指定存储用户、角色、权限许可的数据源及相关查询语句
     -->
-    <!--<bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">-->
-        <!--<property name="credentialsMatcher">-->
-            <!--<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
-                <!--&lt;!&ndash; 加密算法的名称 &ndash;&gt;-->
-                <!--<property name="hashAlgorithmName" value="MD5"> </property>-->
-                <!--&lt;!&ndash; 配置加密的次数 &ndash;&gt;-->
-                <!--<property name="hashIterations" value="1024"> </property>-->
-            <!--</bean>-->
-        <!--</property>-->
-        <!--<property name="permissionsLookupEnabled" value="true"> </property>-->
-        <!--<property name="dataSource" ref="dataSource"> </property>-->
-        <!--<property name="authenticationQuery"-->
-                  <!--value="SELECT password FROM T_USER WHERE user_name = ?">-->
-        <!--</property>-->
-        <!--<property name="userRolesQuery"-->
-                  <!--value="select T_ROLE.ROLE_NAME-->
-                   <!--from T_USER,T_USER_ROLE,T_ROLE where T_USER.USER_NAME= ?-->
-                   <!--and T_USER.USER_ID=T_USER_ROLE.USER_ID-->
-                    <!--and T_USER_ROLE.USER_ID=T_ROLE.ROLE_ID">-->
-        <!--</property>-->
-        <!--<property name="permissionsQuery"-->
-                  <!--value="select T_RIGHT.RIGHT_NAME-->
-                   <!--from T_ROLE,T_ROLE_RIGHT,T_RIGHT where T_ROLE.ROLE_NAME= ?-->
-                    <!--and T_ROLE.ROLE_ID=T_ROLE_RIGHT.ROLE_ID-->
-                     <!--and T_ROLE_RIGHT.RIGHT_ID=T_RIGHT.RIGHT_ID">-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 如需要自定义缓存时间放开以下.修改 ehcache.xml &ndash;&gt;-->
-        <!--<property name="authenticationCachingEnabled" value="true" />-->
-        <!--<property name="authenticationCacheName" value="authenticationCache" />-->
-        <!--<property name="authorizationCachingEnabled" value="true" />-->
-        <!--<property name="authorizationCacheName" value="authorizationCache" />-->
-    <!--</bean>-->
-
-    <bean id="jdbcRealm" class="shiro.JdbcRealmCustom">
+    <bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
                 <!-- 加密算法的名称 -->
@@ -100,12 +67,45 @@
                 <property name="hashIterations" value="1024"> </property>
             </bean>
         </property>
+        <property name="permissionsLookupEnabled" value="true"> </property>
+        <property name="dataSource" ref="dataSource"> </property>
+        <property name="authenticationQuery"
+                  value="SELECT password FROM T_USER WHERE user_name = ?">
+        </property>
+        <property name="userRolesQuery"
+                  value="select T_ROLE.ROLE_NAME
+                   from T_USER,T_USER_ROLE,T_ROLE where T_USER.USER_NAME= ?
+                   and T_USER.USER_ID=T_USER_ROLE.USER_ID
+                    and T_USER_ROLE.USER_ID=T_ROLE.ROLE_ID">
+        </property>
+        <property name="permissionsQuery"
+                  value="select T_RIGHT.RIGHT_NAME
+                   from T_ROLE,T_ROLE_RIGHT,T_RIGHT where T_ROLE.ROLE_NAME= ?
+                    and T_ROLE.ROLE_ID=T_ROLE_RIGHT.ROLE_ID
+                     and T_ROLE_RIGHT.RIGHT_ID=T_RIGHT.RIGHT_ID">
+        </property>
         <!-- 如需要自定义缓存时间放开以下.修改 ehcache.xml -->
         <property name="authenticationCachingEnabled" value="true" />
         <property name="authenticationCacheName" value="authenticationCache" />
         <property name="authorizationCachingEnabled" value="true" />
         <property name="authorizationCacheName" value="authorizationCache" />
     </bean>
+
+    <!--<bean id="jdbcRealm" class="shiro.JdbcRealmCustom">-->
+        <!--<property name="credentialsMatcher">-->
+            <!--<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
+                <!--&lt;!&ndash; 加密算法的名称 &ndash;&gt;-->
+                <!--<property name="hashAlgorithmName" value="MD5"> </property>-->
+                <!--&lt;!&ndash; 配置加密的次数 &ndash;&gt;-->
+                <!--<property name="hashIterations" value="1024"> </property>-->
+            <!--</bean>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 如需要自定义缓存时间放开以下.修改 ehcache.xml &ndash;&gt;-->
+        <!--<property name="authenticationCachingEnabled" value="true" />-->
+        <!--<property name="authenticationCacheName" value="authenticationCache" />-->
+        <!--<property name="authorizationCachingEnabled" value="true" />-->
+        <!--<property name="authorizationCacheName" value="authorizationCache" />-->
+    <!--</bean>-->
 
 
 

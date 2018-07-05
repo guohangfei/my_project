@@ -69,7 +69,6 @@ public class LoginController {
             subject.login(usernamePasswordToken);
             org.apache.shiro.session.Session session = subject.getSession();
             session.setAttribute("userName", user.getUserName());
-            EhcacheUtils.getInstance().put("userToken","userToken",usernamePasswordToken);
         } catch (Exception ex) {
             model.addAttribute("failMsg", "用户不存在或密码错误！");
             return"login";

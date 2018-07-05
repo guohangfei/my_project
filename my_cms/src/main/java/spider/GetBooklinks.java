@@ -157,7 +157,7 @@ public class GetBooklinks implements PageProcessor {
                 //添加初始化的URL
                 .addUrl("http://www.freexs.org")
                 //启动10个线程
-                .thread(1).setScheduler(new PriorityScheduler())
+                .thread(10).setScheduler(new PriorityScheduler())
                 //运行
                 .run();
 //        Spider.create(new GetBooklinks()).setScheduler(new PriorityScheduler()).run();;
