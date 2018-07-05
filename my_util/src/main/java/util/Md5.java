@@ -17,9 +17,20 @@ public class Md5 {
         String hashAlgorithmName = "MD5";
         Object salt = new Md5Hash(saltSource);
         int hashIterations = 1024;
-        Object result = new SimpleHash(hashAlgorithmName, pass, salt, hashIterations);
+        Object result = new SimpleHash(hashAlgorithmName, pass,hashIterations);
         String password = result.toString();
         return password;
+    }
+
+    public static void main(String[] args) {
+        String pass="123456";
+        String saltSource = "blog";
+        String hashAlgorithmName = "MD5";
+        Object salt = new Md5Hash(saltSource);
+        int hashIterations = 1024;
+        Object result = new SimpleHash(hashAlgorithmName,pass,salt,hashIterations);
+        String password = result.toString();
+        System.out.printf(password);
     }
 
 
